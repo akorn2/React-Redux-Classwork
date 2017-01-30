@@ -1,29 +1,29 @@
 import React from 'react';
+import VideoListItem from './video_list_item';
 
-const VideoList = (props) => {
+const VideoList = ({videos, selectVideo}) => {
 
-  const videos = props.videos.map((video) => {
-    return(
-      <img src={video.snippet.thumbnails.default.url}/>
-    );
-  });
+const videoItems = videos.map((video) => {
+  return(
+    <VideoListItem
+      video={video}
+      key={video.etag}
+      selectVideo={selectVideo} />
+  );
+});
+//Question: I tried unsucessfully to include the .map() function in the VideoListItem component. Why were the properties not found?
 
 // @challenge: touch 'video.snippet.thumbnails.default.url' from first props object.
 //@question: how to examine contents of this object? ```[object Object],[object Object],[object Object],[object Object],[object Object]```
 
-
-
-  if (!videos) {
-    return <div>Loading...</div>;
-  }
-  else{
-    console.log('video_list '+ videos);
-  }
+if (!videos) {
+  return <div>Loading...</div>;
+}
 
   return (
-      <div className="video-list">
-        {videos}
-      </div>
+      <ul className="col-md-4 list-group">
+        {videoItems}
+      </ul>
     );
 };
 

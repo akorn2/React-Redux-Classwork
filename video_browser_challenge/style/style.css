@@ -18,6 +18,10 @@
   border-radius: 4px;
 }
 
+.video-list .media-heading {
+  padding-left:10px;
+}
+
 .list-group-item {
   cursor: pointer;
 }

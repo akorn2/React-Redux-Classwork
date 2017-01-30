@@ -44,15 +44,13 @@ class App extends Component {
     */
 
     return (
-      <div>
+      <div className="">
         <SearchBar onSearchTermChange={videoSearch} />
         //this.props.onSearchTermChange allows function videoSearch() to be passed to child component
         <VideoDetail video={this.state.selectedVideo} />
         //This is a controlled component = content is defined by state.
         //this.props.video is defined by this.state.selectedVideo - which is defined by <VideoList>
-        <VideoList
-          onVideoSelect={selectedVideo => this.setState({selectedVideo}) }
-          videos={this.state.videos} />
+        <VideoList onVideoSelect={selectedVideo => this.setState({selectedVideo}) } videos={this.state.videos} />
           // setState re-renders the component's render() and child componenets
           // this.props.onVideoSelect is a function to be triggered by child components onClick();
           // onVideoSelect is an custom eventHandler - defined

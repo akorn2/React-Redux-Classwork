@@ -9,12 +9,14 @@ const VideoList = (props) => {
     return (
       <VideoListItem
         onVideoSelect={props.onVideoSelect}
-        //function on props, passed through VideoListItem.props
+
         key={video.etag}
-        //key is a performance measure to aid react in locating the array's items
+
         video={video} />
     );
   });
+    //function on props, passed through VideoListItem.props
+    //key is a performance measure to aid react in locating the array's items
 
   return (
     <ul className="col-md-4 list-group">
