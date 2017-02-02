@@ -16,8 +16,8 @@ class App extends Component {
       videos: [],
       selectedVideo: null
     };
-    // To use a components state, we must initialize it (to a plain js object inside of the constructor method).
-    // state holds components that change over time.
+    // To use a components state, we must initialize it (using a plain js object inside of the constructor method).
+    // state holds component elements that change over time.
     // state fields must be decalared in constructor (before componentWillMount(); )
     // only class based components have state
     // when state changes, components are re-rendered
@@ -30,7 +30,7 @@ class App extends Component {
     YTSearch({key: API_KEY, term: term}, (videos) => {
       this.setState({
         videos: videos,
-        // ```videos: videos === videos``` (es16 syntax sugar)
+
         selectedVideo: videos[0]
       });
     });
@@ -38,28 +38,41 @@ class App extends Component {
   // React Strategy - Downward Data = only most parent componet should request data
   // each time state is changed, the component's ```render()``` will be re-rendered (as well as child components)
 
-  render() {
-    const videoSearch = _.debounce((term) => { this.videoSearch(term) }, 300);
-    /* Question: _.debounce ??
-    */
+render() {
+  const videoSearch = _.debounce((term) => { this.videoSearch(term) }, 300);
 
-    return (
-      <div className="">
-        <SearchBar onSearchTermChange={videoSearch} />
-        //this.props.onSearchTermChange allows function videoSearch() to be passed to child component
-        <VideoDetail video={this.state.selectedVideo} />
-        //This is a controlled component = content is defined by state.
-        //this.props.video is defined by this.state.selectedVideo - which is defined by <VideoList>
-        <VideoList onVideoSelect={selectedVideo => this.setState({selectedVideo}) } videos={this.state.videos} />
-          // setState re-renders the component's render() and child componenets
-          // this.props.onVideoSelect is a function to be triggered by child components onClick();
-          // onVideoSelect is an custom eventHandler - defined
+  return (
+    <div className="test">
 
+      <SearchBar onSearchTermChange={videoSearch} />
+
+      <VideoDetail video={this.state.selectedVideo} />
+
+      <VideoList
+        onVideoSelect={selectedVideo => this.setState({selectedVideo}) }
+        videos={this.state.videos}
+        />
 
       </div>
-      // JSX components must be wrapped in a 'div'
+
     );
   }
 }
 
 ReactDOM.render(<App />, document.querySelector('.container'));
+
+//
+// return (
+//   <div className="test">
+//     <SearchBar onSearchTermChange={videoSearch} />
+//     //this.props.onSearchTermChange allows function videoSearch() to be passed to child component
+//     <VideoDetail video={this.state.selectedVideo} />
+//     //This is a controlled component = content is defined by state.
+//     //this.props.video is defined by this.state.selectedVideo - which is defined by <VideoList>
+//     <VideoList onVideoSelect={selectedVideo => this.setState({selectedVideo}) } videos={this.state.videos} />
+//       // setState re-renders the component's render() and child componenets
+//       // this.props.onVideoSelect is a function to be triggered by child components onClick();
+//       // onVideoSelect is an custom eventHandler - defined
+//   </div>
+//   // JSX components must be wrapped in a 'div'
+// );

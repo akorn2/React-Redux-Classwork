@@ -8,11 +8,7 @@ const VideoList = (props) => {
     // map() is a function-property of an array
     return (
       <VideoListItem
-        onVideoSelect={props.onVideoSelect}
-
-        key={video.etag}
-
-        video={video} />
+        onVideoSelect={props.onVideoSelect} key={video.etag} video={video} />
     );
   });
     //function on props, passed through VideoListItem.props
