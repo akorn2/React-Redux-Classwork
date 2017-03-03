@@ -1,10 +1,9 @@
 import { combineReducers } from 'redux';
-import BooksReducer from './reducer_books';
 import ActiveBook from './reducer_active_book';
-//@question: Instead of importing each sibling reducer one by one... could I './*' instead?
+import BookList from './reducer_book_list';
 
 const rootReducer = combineReducers({
-  books: BooksReducer,
+  books: BookList,
   activeBook: ActiveBook
 });
 

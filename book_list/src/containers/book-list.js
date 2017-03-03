@@ -3,6 +3,12 @@ import { connect } from 'react-redux';
 import { selectBook } from '../actions/index';
 import { bindActionCreators } from 'redux';
 
+// The component is created in an API style.
+// For a 'smart export' this smart class is passed through 'react-redux.connect()'
+// This 'smart export' accepts the functions mapStateToProps and mapDispatchToProps.
+// The combination of functions achieve: state accesability through props and triggering redux's action.
+// @fix: imported
+
 class BookList extends Component {
   renderList() {
     return this.props.books.map((book) => {
@@ -37,7 +43,7 @@ function mapStateToProps(state) {
 // Anything returned from this function will end up as props
 // on the BookList container
 function mapDispatchToProps(dispatch) {
-  // Whenever selectBook is called, the result shoudl be passed
+  // Whenever selectBook is called, the result should be passed
   // to all of our reducers
   return bindActionCreators({ selectBook: selectBook }, dispatch);
 }

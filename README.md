@@ -1,3 +1,13 @@
-# ReduxCasts
+# npm: react-redux
+# type: Class Work
 
-Each example from the course can be found within this repo. You can either look at the files in a completed state, or check out the changes that were made in a particular section by clicking on one of the links below.
+## Project challenge:
+1) absorb class material
+2) create: './book_list_myCode'
+  + to pass data into props & display through a component.
+  + utalize dispatch actions to update selected_data state & display through a component
+
+## Additional Reading
+
+https://css-tricks.com/learning-react-container-components/
+https://toddmotto.com/react-create-class-versus-component/
