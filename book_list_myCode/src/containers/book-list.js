@@ -25,9 +25,9 @@ class BookList extends Component {
   // @fix: book variable is not passed through parent function (reducer_books), because .map function returns each book_item in the array.
 
 
-  console.log(`test: action state loaded into BookList ${this.selectBook}`)
+  // console.log(`test: action state loaded into BookList ${this.selectBook}`)
   //@question:  why is this function in undefined
-  console.log(`test: dispatch's action().selectBook load json into BookList ${this.props.selectBook}`)
+  // console.log(`test: dispatch's action().selectBook load json into BookList ${this.props.selectBook}`)
   /* @question what is this function acomplishing?
     function () {
 	    return dispatch(actionCreator.apply(undefined, arguments));
@@ -35,7 +35,7 @@ class BookList extends Component {
   */
 
   render(){
-    
+
     return(
       <div className="bookList">
         <ul>
