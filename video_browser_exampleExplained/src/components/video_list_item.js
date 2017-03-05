@@ -14,8 +14,10 @@ const VideoListItem = ({video, onVideoSelect}) => {
 
   return (
     <li onClick={() => onVideoSelect(video) } className="list-group-item">
-    //onVideoSelect is a function passed throug parent component's props
-    //onClick is an eventHandler triggering onVideoSelect
+      {/*
+      onVideoSelect is a function passed throug parent component's props
+      onClick is an eventHandler triggering onVideoSelect
+      */}
       <div className="video-list media">
         <div className="media-left">
           <img className="media-object" src={imageUrl} />

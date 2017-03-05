@@ -10,20 +10,27 @@ const API_KEY = 'AIzaSyDtdrVC98RkGO1o-on-yDJFv9NLm2254xg';
 class App extends Component {
   constructor(props) {
     super(props);
-    // super loads parents constructor component
+    // super loads parent component's constructor
 
     this.state = {
       videos: [],
       selectedVideo: null
     };
-    // To use a components state, we must initialize it (using a plain js object inside of the constructor method).
-    // state holds component elements that change over time.
+    // To use a component's state, we must initialize the state object. (By initiating a plain js Object inside of the constructor method.)
+    // state manages component elements that change over time.
     // state fields must be decalared in constructor (before componentWillMount(); )
-    // only class based components have state
+    // @ question: upon which component status should we call declare state?
+    // only class based components have state (because the state functionality is inherited from the extended react.Component)
+    // @ question: what type of components do not facilitate state functionality?
+    // @ question: variable based components do note feature state functionality. (only class based componets have state (because the state functionality is inherited from the extended react.Component)
     // when state changes, components are re-rendered
+    // @question: when do components re-rerender?
+    // @answer: when state changes... and ...
     // @question: Why start will null & not an empty object?
 
     this.videoSearch('surfboards');
+    // We must execute this function in the constructor to pass a default value into the api call.
+
   }
 
   videoSearch(term) {
@@ -35,17 +42,24 @@ class App extends Component {
       });
     });
   }
-  // React Strategy - Downward Data = only most parent componet should request data
-  // each time state is changed, the component's ```render()``` will be re-rendered (as well as child components)
+  // React Strategy = Downward Data
+  // Only most parent componet should request data.
+  // videoSearch wraps our api function: youtube-api-search.js
+  // We must wrap our api call to apply our API_KEY config constant.
+  // the results of YTSearch are applied with this.setState({}) , which is a class component method to update state. We cannot manually adjust the object, otherwise the entire object will be overwritten (destroying our other state.keys)
+  // each time this method changes state, the class component's ```render()``` will be re-rendered (as well as child components inheriting stat attributes).
+  // @question: will an updated state update all child componets inheriting state values, or only the class components inheriting the updated state.values?
 
 render() {
   const videoSearch = _.debounce((term) => { this.videoSearch(term) }, 300);
-
+    { /*
+    lodash.debounce delays invoking func until after waiting 300 miliseconds.
+    This throttles videoSearch to be run every 3 seconds vs. every milisecond the text box changes. */}
   return (
     <div className="test">
 
       <SearchBar onSearchTermChange={videoSearch} />
-
+      <div className="row">
       <VideoDetail video={this.state.selectedVideo} />
 
       <VideoList
@@ -54,6 +68,7 @@ render() {
         />
 
       </div>
+    </div>
 
     );
   }
