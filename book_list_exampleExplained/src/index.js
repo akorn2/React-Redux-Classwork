@@ -16,3 +16,8 @@ ReactDOM.render(
     <App />
   </Provider>
   , document.querySelector('.container'));
+
+/* Organize project by views and data:
+data = BOOK_LIST & SELECTED_BOOK
+views = list view, list item, detail view
+*/

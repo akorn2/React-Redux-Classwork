@@ -42,24 +42,28 @@ class App extends Component {
       });
     });
   }
-  // React Strategy = Downward Data
-  // Only most parent componet should request data.
-  // videoSearch wraps our api function: youtube-api-search.js
-  // We must wrap our api call to apply our API_KEY config constant.
-  // the results of YTSearch are applied with this.setState({}) , which is a class component method to update state. We cannot manually adjust the object, otherwise the entire object will be overwritten (destroying our other state.keys)
-  // each time this method changes state, the class component's ```render()``` will be re-rendered (as well as child components inheriting stat attributes).
-  // @question: will an updated state update all child componets inheriting state values, or only the class components inheriting the updated state.values?
-
+// React Strategy = Downward Data
+// Only most parent componet should request data.
+// videoSearch wraps our api function: youtube-api-search.js
+// We must wrap our api call to apply our API_KEY config constant.
+// the results of YTSearch are applied with this.setState({}) , which is a class component method to update state.
+// We cannot manually adjust the object, otherwise the entire object will be overwritten (destroying our other state.keys)
+// each time this method changes state, the class component's ```render()``` will be re-rendered (as well as child components inheriting stat attributes).
+// @question: will an updated state update all child componets inheriting state values, or only the class components inheriting the updated state.values?
+// state in react is component level. One component can change other components state through passing values and callback functions
+// redux shares state across appp's components
 render() {
   const videoSearch = _.debounce((term) => { this.videoSearch(term) }, 300);
     { /*
     lodash.debounce delays invoking func until after waiting 300 miliseconds.
     This throttles videoSearch to be run every 3 seconds vs. every milisecond the text box changes. */}
   return (
-    <div className="test">
+    <div>
 
       <SearchBar onSearchTermChange={videoSearch} />
-      <div className="row">
+      {/* pass search function into form component */}
+      
+    <div className="row">
       <VideoDetail video={this.state.selectedVideo} />
 
       <VideoList
